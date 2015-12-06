@@ -1,0 +1,3 @@
+https://github.com/apriori/haskell-monad-mersenne-random.git
+https://github.com/apriori/moo.git
+./

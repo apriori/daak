@@ -1,0 +1,13 @@
+{
+  "load" : {
+    "loadSpaceSize" : [1200, 800, 2056]
+  }
+  ,
+  "items" : [
+    {
+      "itemName": "1"
+    , "quantity": 20
+    , "itemSize": [340, 329, 88]
+    }
+  ]
+}

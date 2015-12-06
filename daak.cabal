@@ -1,0 +1,74 @@
+name: daak
+version: 0.0.1
+cabal-version: >=1.10
+build-type: Simple
+license: MIT
+license-file: LICENSE
+category: Algorithms
+author: Armin Kazmi
+stability: experimental
+tested-with: GHC == 7.10.2
+synopsis: A genetic algorithm for a packing problem.
+description: A genetic packing algorithm for a packing problem. Note that the license is dual, since the used modified library 'moo'
+             uses a special license (that is MIT compatible but requires special mentioning of a smilar license). Please take a look at
+             "LicenseNSGA2" if you intend to modify or redistribute this program.
+
+library
+    hs-source-dirs: lib
+    default-language: Haskell2010
+    build-depends: HTF -any
+                 , bytestring >=0.10.4.0 && < 0.11
+                 , lens >=4.3.3 && < 4.10
+                 , moo == 1.1
+                 , pretty >=1.1.1.1 && < 1.2
+                 , parallel >= 3.2 && < 3.3
+                 , mersenne-random-pure64 >= 0.2.0 && < 0.3
+                 , old-time >= 1.1 && < 1.2
+                 , HaXml >= 1.25 && < 1.26
+                 , base >= 4.8 && < 4.9
+                 , deepseq >= 1.4.1 && < 1.5
+                 , vect >= 0.4 && < 0.5
+                 , vector >= 0.10 && < 0.11
+                 , containers >= 0.5.6 && < 0.6
+                 , polyparse >= 1.11 && < 1.12
+                 , QuickCheck >= 2.8 && < 2.9
+                 , mtl >= 2.2.1 && < 2.3
+                 , text >= 1.2.1 && < 1.3
+                 , fgl >= 5.5.2 && < 5.6
+                 , array >= 0.5.1 && < 0.6
+                 , aeson >= 0.10.0.0 && < 0.11.0.0
+    exposed-modules: DAAK.Algorithms.Gamo
+                   , DAAK.Algorithms.Gamo.Criteria
+                   , DAAK.Algorithms.Gamo.Encoding
+                   , DAAK.Algorithms.Gamo.Packing
+                   , DAAK.Algorithms.NSGA2Mod
+                   , DAAK.Core.Debug
+                   , DAAK.Core.ResidualSpace
+                   , DAAK.Core.Space3D
+                   , DAAK.Core.Utilities
+                   , DAAK.Algorithms.Gamo.JsonImport
+                   , DAAK.Core.Random.MT
+
+executable livealgo
+    build-depends: daak
+                 , base >= 4.8 && < 4.9
+                 , deepseq >= 1.4.1 && < 1.5
+                 , parallel >= 3.2 && < 3.3
+                 , containers >= 0.5.6 && < 0.6
+                 , vect >= 0.4 && < 0.5
+                 , moo == 1.1
+                 , mersenne-random-pure64 >= 0.2.0 && < 0.3
+                 , HTF >= 0.13 && < 0.14
+                 , mtl >= 2.2 && < 2.3
+                 , GLUT >= 2.7.0 && < 2.8
+                 , not-gloss >= 0.7 && < 0.8
+                 , linear == 1.20.1
+                 , aeson >= 0.10.0.0 && < 0.11.0.0
+    main-is: LiveAlgo.hs
+    buildable: True
+    default-language: Haskell2010
+    hs-source-dirs: src
+    other-modules:
+    ghc-prof-options: -fwarn-incomplete-patterns -rtsopts -fprof-auto
+                      -O3 -fllvm
+    ghc-options: -fwarn-incomplete-patterns -rtsopts "-with-rtsopts=-N" -threaded
