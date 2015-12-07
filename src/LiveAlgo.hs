@@ -309,7 +309,6 @@ liveAlgo :: PureMT -> CompleteProblem -> IO ()
 liveAlgo mt (CompleteProblem _ p@(ProblemDescription l _ _ )) =
   let state = createInitialState mt p in
   playSimulateIO state l
-liveAlgo _ _ = return ()
 
 runLiveAlgo :: PureMT -> FilePath -> IO ()
 runLiveAlgo mt p = eitherDecodeFile p >>= either putStrLn (liveAlgo mt)
