@@ -107,7 +107,7 @@ accCenterDist = uncurry centerDistSqr
 -- | Using `groupBy` on the package index determine a list of list of indexed spaces.
 -- The order of the groups in the result list depends on the order in the input list.
 groupIndexedSpace :: [IndexedSpace] -> [[IndexedSpace]]
-groupIndexedSpace  = groupBy ((==) `on` fst) . sortBy (compare `on` fst)
+groupIndexedSpace = groupBy ((==) `on` fst) . sortBy (compare `on` fst)
 
 -- | Group spaces by their end-Z-coordinate. Return the groups in ascending order.
 groupByEz :: [EuclideanSpace3D] -> [[EuclideanSpace3D]]

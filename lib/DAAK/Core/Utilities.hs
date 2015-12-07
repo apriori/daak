@@ -23,10 +23,10 @@ repeatM :: Monad m => m a -> m [a]
 repeatM = sequence . repeat
 
 {-# INLINE iterateM #-}
-iterateM n f x = go n x
+iterateM n f = go n
  where
-     go 0 !x = return x
-     go n !x = f x >>= go (n-1)
+   go 0 !x = return x
+   go n !x = f x >>= go (n-1)
 
 
 breakList :: [a] -> Int -> [[a]]
@@ -45,8 +45,7 @@ deconstruct5Var :: [a] -> ([a], [a], [a], [a], [a])
 deconstruct5Var = unzip5 . deconstruct5VarWork
 
 break5 :: [[a]] -> Int -> [([a], [a], [a], [a], [a])]
-break5 [] _ = []
-break5 as l = fmap (`deconstruct5` l) as
+break5 as l = (`deconstruct5` l) <$> as
 
 uniont3 :: (a, b, c) -> d -> (a, b, c, d)
 uniont3 (a, b, c) d = (a, b, c, d)
@@ -61,7 +60,7 @@ takeBack :: Int -> [a] -> [a]
 takeBack i = reverse . take i . reverse
 
 harmonicMean :: Floating a => [a] -> a
-harmonicMean xs = fromIntegral (length xs) / sum (fmap (1/) xs)
+harmonicMean xs = fromIntegral (length xs) / sum ((1/) <$> xs)
 
 varianceBoundUpper :: (Ord a, Num a, Floating a) => [a] -> a
 varianceBoundUpper xs
